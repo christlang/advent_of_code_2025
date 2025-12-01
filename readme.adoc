@@ -1,0 +1,14 @@
+
+
+
+[source,bash]
+----
+curl -s "https://get.sdkman.io" | bash
+
+sdk install maven
+sdk install java
+
+mvn archetype:generate -DgroupId=de.cutl -DartifactId=advent-of-code-2025 -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+cd advent-of-code-2025
+----
