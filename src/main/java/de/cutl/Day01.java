@@ -4,10 +4,8 @@ package de.cutl;
  * Hello world!
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
+public class Day01 {
+    public static void main( String[] args ) {
         System.out.println( "Hello World!" );
     }
 }
