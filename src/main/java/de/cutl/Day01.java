@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Hello world!
+ * Day 01
  *
  */
 public class Day01 {
@@ -63,6 +63,61 @@ public class Day01 {
                 zeroCounter++;
             }
         }
+        return zeroCounter;
+    }
+
+    public int result_0x434C49434B() {
+        int zeroCounter = 0;
+        for (Rotation rotation : rotations) {
+            System.out.printf("%s - position %d %n", rotation.toString(), position);
+
+            int rounds = rotation.steps / 100;
+
+            for (int i = 0; i < rounds; i++) {
+                System.out.println("multiple-rounds: " + rounds);
+                int part = updatePosition(rotation.d, 100);
+                System.out.println("  Zeros: " + part);
+                zeroCounter += part;
+            }
+
+            int leftSteps = rotation.steps % 100;
+
+            int part =  updatePosition(rotation.d, leftSteps);
+            System.out.println("  Zeros: " + part);
+            zeroCounter += part;
+        }
+        return zeroCounter;
+    }
+
+    int updatePosition(Direction direction, int stepPart) {
+        int zeroCounter = 0;
+        int startPosition = position;
+
+        if (direction == Direction.R) {
+            System.out.printf("  %d + %d => %d %n", position, stepPart, position + stepPart);
+            position += stepPart;
+        } else {
+            System.out.printf("  %d - %d => %d %n", position, stepPart, position - stepPart);
+            position -= stepPart;
+        }
+
+        if (position > 100) {
+            zeroCounter++;
+        }
+
+        position %= 100;
+
+        if (position < 0) {
+            position += 100;
+            if (startPosition != 0) {
+                zeroCounter++;
+            }
+        }
+
+        if (position == 0) {
+            zeroCounter++;
+        }
+
         return zeroCounter;
     }
 }
